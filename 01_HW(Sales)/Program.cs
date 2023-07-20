@@ -21,21 +21,43 @@ namespace _01_HW_Sales_
             //});
 
             //2
-            //manager.ShowAllSales(new(2023, 06, 10), new(2023, 06, 20));
+            //DateOnly dateFrom;
+            //DateOnly dateTo;
+            //do
+            //    Console.WriteLine("Enter date from (yyyy/MM/dd):");
+            //while (!DateOnly.TryParse(Console.ReadLine().ToString(), out dateFrom));
+            //do
+            //    Console.WriteLine("Enter date to (yyyy/MM/dd):");
+            //while (!DateOnly.TryParse(Console.ReadLine().ToString(), out dateTo));
+            //manager.ShowAllSales(dateFrom, dateTo);
 
             //3
-            //Console.WriteLine( manager.GetLastSaleByBuyer("John", "Doe"));
+            //Console.WriteLine("Enter first name: ");
+            //string firstname = Console.ReadLine();
+            //Console.WriteLine("Enter last name: ");
+            //string lasttname = Console.ReadLine();
+            //Console.WriteLine(manager.GetLastSaleByBuyer(firstname, lasttname));
 
             //4
-            //int res = manager.DeleteSaller(1);
-            //Console.WriteLine($"Deleted sellers: {res}");
-            //res = manager.DeleteBuyer(1);
-            //Console.WriteLine($"Deleted buyers: {res}");
+            //Console.WriteLine("Enter sellerID to delete: ");
+            //int idSeller;
+            //if (int.TryParse(Console.ReadLine(), out idSeller))
+            //{
+            //    int res = manager.DeleteSaller(idSeller);
+            //    Console.WriteLine($"Deleted sellers: {res}");
+            //}
+
+            //Console.WriteLine("Enter buyerID to delete: ");
+            //int idBuyer;
+            //if (int.TryParse(Console.ReadLine(), out idBuyer))
+            //{
+            //    int res = manager.DeleteBuyer(idBuyer);
+            //    Console.WriteLine($"Deleted buyers: {res}");
+            //}
 
             //5
-            var topSeller = manager.GetSellerByAmount();
-            Console.WriteLine(topSeller);
+            //var topSeller = manager.GetSellerByAmount();
+            //Console.WriteLine(topSeller);
         }
-
     }
 }

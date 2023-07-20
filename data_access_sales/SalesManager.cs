@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Xml.Linq;
 
@@ -94,10 +95,29 @@ namespace data_access_sales
         }
         public Sale GetLastSaleByBuyer(string firstname, string lastname)
         {
-            string cmd = $"select top 1  ID, BuyerID, SellerID, [Sales amount],  CONVERT(varchar, [Date amount], 4) AS [Date amount]  from Sales where BuyerID = (select ID from Buyers where [First name] = '{firstname}' and[Last name] = '{lastname}')  order by[Date amount] desc;";
-            SqlCommand sql = new(cmd, connection);
+            //string cmd = $"select top 1  ID, BuyerID, SellerID, [Sales amount],  CONVERT(varchar, [Date amount], 4) AS [Date amount]  from Sales where BuyerID = (select ID from Buyers where [First name] = '{firstname}' and[Last name] = '{lastname}')  order by[Date amount] desc;";
+            //SqlCommand sql = new(cmd, connection);
             
-            using var reader = sql.ExecuteReader();
+            //using var reader = sql.ExecuteReader();
+            //reader.Read();
+            //return GetSale(reader);
+
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "select top 1 " +
+                "ID, BuyerID, SellerID, [Sales amount], CONVERT(varchar, [Date amount], 4) AS [Date amount]" +
+                "from Sales " +
+                "where BuyerID = " +
+                                    "(select ID " +
+                                    "from Buyers " +
+                                    "where [First name] = @firstname and[Last name] = @lastname)" +
+                                    "order by[Date amount] desc;";
+
+            command.Parameters.Add("@firstname", SqlDbType.NVarChar).Value = firstname;
+            //command.Parameters.AddWithValue("@firstname", firstname);
+            command.Parameters.Add("@lastname", SqlDbType.NVarChar).Value = lastname;
+            //command.Parameters.AddWithValue("@lastname", lastname);
+
+            using var reader = command.ExecuteReader();
             reader.Read();
             return GetSale(reader);
         }
