@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_HW(Sales)", "01_HW(Sales
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "data_access_sales", "data_access_sales\data_access_sales.csproj", "{D10278E1-E04D-4F39-9693-DE1BB5F24889}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{417F8E51-550E-4866-8399-82309E485061}"
+	ProjectSection(SolutionItems) = preProject
+		SQLSalesDB.sql = SQLSalesDB.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
