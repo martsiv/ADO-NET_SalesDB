@@ -34,7 +34,36 @@ namespace data_access_sales
             }
             Console.WriteLine('\n' + new string('_', 100));
         }
+        private Sale GetSale(SqlDataReader reader)
+        {
+            return new Sale()
+            {
 
+                ID = (int)reader["ID"],
+                buyerID = reader["BuyerID"] as int?,
+                sellerID = reader["SellerID"] as int?,
+                salesAmount = (decimal)reader["Sales amount"],
+                dateAmount = DateOnly.Parse(((DateTime)reader["Date amount"]).ToString("yyyy-MM-dd"))
+            };
+        }
+        private Seller GetSeller(SqlDataReader reader)
+        {
+            return new Seller()
+            {
+                ID = (int)reader["ID"],
+                FirstName = (string)reader["First name"],
+                LastName = (string)reader["Last name"],
+            };
+        }
+        private Buyer GetBuyer(SqlDataReader reader)
+        {
+            return new Buyer()
+            {
+                ID = (int)reader["ID"],
+                FirstName = (string)reader["First name"],
+                LastName = (string)reader["Last name"],
+            };
+        }
         // ------------ public interface
         public void AddSale(Sale sale)
         {
@@ -47,18 +76,6 @@ namespace data_access_sales
             sql.Parameters.AddWithValue("@dateAmount", sale.dateAmount.ToString("yyyy-MM-dd"));
 
             sql.ExecuteNonQuery();
-        }
-        private Sale GetSale(SqlDataReader reader)
-        {
-            return new Sale()
-            {
-
-                ID = (int)reader["ID"],
-                buyerID = (int)reader["BuyerID"],
-                sellerID = (int)reader["SellerID"],
-                salesAmount = (decimal)reader["Sales amount"],
-                dateAmount = DateOnly.Parse((string)reader["Date amount"])
-            };
         }
         public IEnumerable<Sale> GetAllSales(DateOnly dateFrom, DateOnly dateTo)
         {
@@ -76,6 +93,24 @@ namespace data_access_sales
             using var reader = sql.ExecuteReader();
             while (reader.Read())
                 yield return GetSale(reader);
+        }
+        public IEnumerable<Seller> GetAllSellers()
+        {
+            string cmd = "select * from Sellers;";
+            SqlCommand sql = new(cmd, connection);
+
+            using var reader = sql.ExecuteReader();
+            while (reader.Read())
+                yield return GetSeller(reader);
+        }
+        public IEnumerable<Buyer> GetAllBuyers()
+        {
+            string cmd = "select * from Buyers;";
+            SqlCommand sql = new(cmd, connection);
+
+            using var reader = sql.ExecuteReader();
+            while (reader.Read())
+                yield return GetBuyer(reader);
         }
         public void ShowAllSales()
         {

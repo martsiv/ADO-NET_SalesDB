@@ -9,8 +9,8 @@ namespace data_access_sales
     public class Sale
     {
         public int ID { get; set; }
-        public int buyerID { get; set; }
-        public int sellerID { get; set; }
+        public int? buyerID { get; set; }
+        public int? sellerID { get; set; }
         public decimal salesAmount { get; set; }
         public DateOnly dateAmount { get; set; }
         public Sale(int buyerID, int sellerID, decimal salesAmount, DateOnly dateAmount)

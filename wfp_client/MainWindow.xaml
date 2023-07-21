@@ -1,0 +1,25 @@
+﻿<Window x:Class="wfp_client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wfp_client"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Margin="5" Text="Sales"/>
+            <Grid>
+                <DataGrid  Name="gridSales"/>
+            </Grid>
+            <TextBlock HorizontalAlignment="Center" Margin="5" Text="Sellers"/>
+            <Grid>
+                <DataGrid  Name="gridSellers"/>
+            </Grid>
+            <TextBlock HorizontalAlignment="Center" Margin="5" Text="Buyers"/>
+            <Grid>
+                <DataGrid  Name="gridBuyers"/>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
